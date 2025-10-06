@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: Inter, sans-serif;
+  font-family: Karla, sans-serif;
   margin: 0;
   background: #0b2434;
   display: flex;
@@ -41,9 +41,34 @@ main {
   justify-content: center;
   align-items: center;
   color: #2b283a;
-  font-family: Inter, sans-serif;
+  font-family: Karla, sans-serif;
   font-size: 20.589px;
   font-weight: 700;
   border: none;
   cursor: pointer;
+}
+
+.die:hover {
+  background-color: #9ff5c2;
+}
+
+.roll-dice-btn {
+  width: 92.16px;
+  height: 35.84px;
+  border-radius: 3.813px;
+  background: #5035ff;
+  box-shadow: 0 3.2px 7.68px 0 rgba(0, 0, 0, 0.18);
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-family: Karla;
+  font-size: 16.384px;
+  font-weight: 700;
+  margin-top: 26px;
+  cursor: pointer;
+  font-family: Karla, sans-serif;
+}
+
+.roll-dice-btn:hover {
+  background-color: #7a64ff;
 }
