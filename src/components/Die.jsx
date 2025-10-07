@@ -1,3 +1,11 @@
 export default function Dies(props) {
-  return <button className="die">{props.number}</button>;
+  const dieClass = props.die.isHeld ? "die isHeld" : "die";
+  return (
+    <button
+      className={dieClass}
+      onClick={() => props.toggleHoldDie(props.die.id)}
+    >
+      {props.die.value}
+    </button>
+  );
 }

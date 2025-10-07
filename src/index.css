@@ -48,6 +48,10 @@ main {
   cursor: pointer;
 }
 
+.isHeld {
+  background-color: #59e391;
+}
+
 .die:hover {
   background-color: #9ff5c2;
 }
