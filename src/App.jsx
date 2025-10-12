@@ -3,17 +3,6 @@ import React from "react";
 import { nanoid } from "nanoid";
 
 export default function App() {
-  /**
-   * Challenge:
-   *
-   * Create state to hold our array of numbers. (Initialize
-   * the state by calling our `generateAllNewDice` function so it
-   * loads all new dice as soon as the app loads)
-   *
-   * Map over the state numbers array to generate our array
-   * of Die elements and render those in place of our
-   * manually-written 10 Die elements.
-   */
   const [dice, setDice] = React.useState(generateAllNewDice);
 
   function generateAllNewDice() {
@@ -22,12 +11,10 @@ export default function App() {
     for (let i = 0; i < 10; i++) {
       newDice.push({
         value: Math.ceil(Math.random() * 6),
-        isHeld: false,
+        isHeld: true,
         id: nanoid(),
       });
     }
-
-    console.log("init dice: ", newDice);
     return newDice;
   }
 
@@ -52,7 +39,6 @@ export default function App() {
     <Die key={die.id} die={die} toggleHoldDie={toggleHoldDie} />
   ));
 
-  console.log("current dice: ", dice);
   return (
     <main>
       <div className="dice-container">{diceElements}</div>
