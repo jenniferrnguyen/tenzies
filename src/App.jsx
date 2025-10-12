@@ -4,6 +4,11 @@ import { nanoid } from "nanoid";
 
 export default function App() {
   const [dice, setDice] = React.useState(generateAllNewDice);
+  let gameWon = false;
+
+  if (dice.every((die) => die.isHeld && die.value === dice[0].value)) {
+    gameWon = true;
+  }
 
   function generateAllNewDice() {
     const newDice = [];
@@ -39,6 +44,8 @@ export default function App() {
     <Die key={die.id} die={die} toggleHoldDie={toggleHoldDie} />
   ));
 
+  const styles = gameWon ? { backgroundColor: "#FF69B4" } : null;
+
   return (
     <main>
       <h1 className="title">Tenzies</h1>
@@ -47,8 +54,8 @@ export default function App() {
         current value between rolls.
       </p>
       <div className="dice-container">{diceElements}</div>
-      <button className="roll-dice-btn" onClick={rollDice}>
-        Roll
+      <button style={styles} className="roll-dice-btn" onClick={rollDice}>
+        {gameWon ? "New Game" : "Roll"}
       </button>
     </main>
   );

@@ -71,8 +71,6 @@ main {
 }
 
 .roll-dice-btn {
-  width: 92.16px;
-  height: 35.84px;
   border-radius: 3.813px;
   background: #5035ff;
   box-shadow: 0 3.2px 7.68px 0 rgba(0, 0, 0, 0.18);
@@ -85,6 +83,7 @@ main {
   margin-top: 26px;
   cursor: pointer;
   font-family: Karla, sans-serif;
+  padding: 8px 24px;
 }
 
 .roll-dice-btn:hover {
