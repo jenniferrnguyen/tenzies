@@ -1,6 +1,7 @@
 import Die from "./components/Die";
 import React from "react";
 import { nanoid } from "nanoid";
+import Confetti from "react-confetti";
 
 export default function App() {
   const [dice, setDice] = React.useState(generateAllNewDice);
@@ -44,17 +45,29 @@ export default function App() {
     <Die key={die.id} die={die} toggleHoldDie={toggleHoldDie} />
   ));
 
-  const styles = gameWon ? { backgroundColor: "#FF69B4" } : null;
+  function newGame() {
+    gameWon = false;
+    setDice(generateAllNewDice());
+  }
+
+  const btnStyles = gameWon ? { backgroundColor: "#FF69B4" } : null;
 
   return (
     <main>
-      <h1 className="title">Tenzies</h1>
+      {gameWon && <Confetti />}
+      <h1 className="title">{gameWon ? "Congratulations!" : "Tenzies"}</h1>
+
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.
       </p>
+
       <div className="dice-container">{diceElements}</div>
-      <button style={styles} className="roll-dice-btn" onClick={rollDice}>
+      <button
+        style={btnStyles}
+        className="roll-dice-btn"
+        onClick={gameWon ? newGame : rollDice}
+      >
         {gameWon ? "New Game" : "Roll"}
       </button>
     </main>
