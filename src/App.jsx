@@ -5,11 +5,17 @@ import Confetti from "react-confetti";
 
 export default function App() {
   const [dice, setDice] = React.useState(generateAllNewDice);
-  let gameWon = false;
+  const buttonRef = React.useRef(null);
 
-  if (dice.every((die) => die.isHeld && die.value === dice[0].value)) {
-    gameWon = true;
-  }
+  const gameWon = dice.every(
+    (die) => die.isHeld && die.value === dice[0].value
+  );
+
+  React.useEffect(() => {
+    if (gameWon) {
+      buttonRef.current.focus();
+    }
+  }, [gameWon]);
 
   function generateAllNewDice() {
     const newDice = [];
@@ -46,7 +52,7 @@ export default function App() {
   ));
 
   function newGame() {
-    gameWon = false;
+    buttonRef.current.focus();
     setDice(generateAllNewDice());
   }
 
@@ -55,6 +61,12 @@ export default function App() {
   return (
     <main>
       {gameWon && <Confetti />}
+      <div aria-live="polite" className="sr-only">
+        {gameWon && (
+          <p>Congratulations! You won! Press "New Game" to start again.</p>
+        )}
+      </div>
+
       <h1 className="title">{gameWon ? "Congratulations!" : "Tenzies"}</h1>
 
       <p className="instructions">
@@ -67,6 +79,7 @@ export default function App() {
         style={btnStyles}
         className="roll-dice-btn"
         onClick={gameWon ? newGame : rollDice}
+        ref={buttonRef}
       >
         {gameWon ? "New Game" : "Roll"}
       </button>

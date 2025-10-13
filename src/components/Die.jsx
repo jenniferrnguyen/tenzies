@@ -5,6 +5,10 @@ export default function Dies(props) {
     <button
       className={dieClass}
       onClick={() => props.toggleHoldDie(props.die.id)}
+      aria-pressed={props.die.isHeld}
+      aria-label={`Die with value ${props.die.value}, ${
+        props.die.isHeld ? "held" : "not held"
+      }`}
     >
       {props.die.value}
     </button>
